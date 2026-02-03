@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+    /* * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+    } */
+
+    /* body {
+      background: #fff;
+    } */
+
+    /* SECTION */
+    #trending {
+      padding: 20px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+   .trending-slider .swiper-slide {
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trending-slider .swiper-slide-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Show only center + 3 on each side = total 7 */
+.trending-slider .swiper-slide {
+  transform: scale(0.7);
+}
+.trending-slider .swiper-slide-next,
+.trending-slider .swiper-slide-prev {
+  transform: scale(0.85);
+}
+.trending-slider .swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+
+    /* SLIDES FIT 7 IMAGES */
+    .swiper-slide {
+      width: 18rem !important;     /* Smaller width = 7 slides visible */
+      height: 33rem !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trending-slide-img {
+      width: 100% !important;      /* Full width image container */
+      height: 95%;
+      overflow: hidden;
+      /* border-radius: 1.5rem; */
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .trending-slide-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+    }
+
+    /* Hide default slide shadows */
+    .swiper-slide-shadow-left,
+    .swiper-slide-shadow-right {
+      display: none !important;
+    }
+
+  .swiper-button-next,
+.swiper-button-prev {
+  position: static !important; 
+  margin: 0 !important;
+}
+
+.trending-slider-control-1{
+display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 57.5rem; 
+  /* gap: 1000px; */
+    position: absolute;
+    margin-top: -249px;
+    width: 100%;
+}
+
+
+
+.trending-slider-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem; 
+  margin-top: 63px;
+}
+
+
+
+    .slider-arrow {
+      width: 4rem;
+      height: 4rem;
+      /* background: #fff; */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      /* box-shadow: 0 4px 10px rgba(0,0,0,0.15); */
+      z-index: 20;
+      transition: 0.3s;
+    }
+
+    .slider-arrow:hover {
+      transform: scale(1.1);
+    }
+
+    .slider-arrow ion-icon {
+      font-size: 2rem;
+      color: #000;
+    }
+
+    .swiper-pagination-bullet {
+      background: rgba(230, 226, 226, 0.4);
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #ffffff;
+      transform: scale(1.3);
+    }
+
+    .swiper-button-next, .swiper-button-prev{
+        color: #fff !important;
+    }
+
+    .swiper-button-prev::after{
+         font-size: 26px;
+    }
+
+    .swiper-button-next::after{
+         font-size: 26px;
+    }
+
+    @media (max-width: 600px) {
+        .trending-slider-control-1{
+
+  gap: 17.5rem; 
+  
+}
+
+
+    }
+  </style>
+</head>
+<body>
+
+    <div>
+  <section id="trending">
+    <div class="swiper trending-slider">
+        
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/WhatsApp Image 2025-11-27 at 15.37.53_eca29306 copy.webp') }}" />
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/OWS7-153.webp') }}" />
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/WhatsApp Image 2025-11-27 at 16,00,56_d0ba0c7f copy-Picsart-AiImageEnhancer.webp') }}" />
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/WhatsApp Image 2025-11-27 at 16,01,42_d9daafb0 copy-Picsart-AiImageEnhancer.webp') }}" />
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/WhatsApp Image 2025-11-27 at 16,03,18_9debab77 copy-Picsart-AiImageEnhancer.webp') }}" />
+          </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/WhatsApp Image 2025-11-27 at 16.01.06_9468c884 copy.webp') }}" />
+          </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="swiper-slide">
+          <div class="trending-slide-img">
+            <div class="image-overlay"></div>
+            <img src="{{ asset('/img/slider/WhatsApp Image 2025-11-27 at 16.02.29_955e4e2b copy.webp') }}" />
+          </div>
+        </div>
+
+
+        
+      </div>
+      <div class="trending-slider-control-1">
+                <!-- Previous Button (Left Side) -->
+                <button class="swiper-button-prev slider-arrow absolute left-2 md:left-4 top-1/2  z-10  hover:bg-black/90 p-3 md:p-4  transition duration-200 focus:outline-none focus:ring-4 ring-indigo-300">
+                    <!-- SVG Arrow Icon -->
+                    {{-- <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg> --}}
+                </button>
+
+                <!-- Next Button (Right Side) -->
+                <button class="swiper-button-next slider-arrow absolute right-2 md:right-16 top-1/2  z-10 bg-white/70 hover:bg-black/90 p-3 md:p-4 rounded-full  transition duration-200 focus:outline-none focus:ring-4 ring-indigo-300">
+                    <!-- SVG Arrow Icon -->
+                    {{-- <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg> --}}
+                </button>
+            </div>
+
+    
+
+      <!-- Controls -->
+      <div class="trending-slider-control">
+        {{-- <div class="swiper-button-prev slider-arrow">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </div>
+        <div class="swiper-button-next slider-arrow">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </div> --}}
+
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
+  <script src="{{ asset('/js/swiper-bundle.min.js') }}"></script>
+
+  <script>
+   const swiper = new Swiper(".trending-slider", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  loop: true,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 150,
+    modifier: 1.5,
+    slideShadows: false,
+  },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+  </script>
+
+</body>
+</html>

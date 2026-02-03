@@ -1,0 +1,13 @@
+/**
+ * IMPORTANT: Download Swiper JS Library
+ * 
+ * This file is a placeholder. You need to download the actual Swiper JS library.
+ * 
+ * Download from: https://unpkg.com/swiper@8/swiper-bundle.min.js
+ * 
+ * Or use this command in your terminal (from the plugin root directory):
+ * curl -o assets/js/swiper-bundle.min.js https://unpkg.com/swiper@8/swiper-bundle.min.js
+ * 
+ * Or on Windows PowerShell:
+ * Invoke-WebRequest -Uri "https://unpkg.com/swiper@8/swiper-bundle.min.js" -OutFile "assets/js/swiper-bundle.min.js"
+ */

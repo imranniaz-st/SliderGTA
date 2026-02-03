@@ -1,0 +1,78 @@
+/* Admin Styles */
+.slider-gta-images-wrapper {
+    padding: 10px 0;
+}
+
+.slider-gta-images-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    min-height: 100px;
+}
+
+.slider-image-item {
+    position: relative;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: move;
+    transition: all 0.3s;
+    background: #f9f9f9;
+}
+
+.slider-image-item:hover {
+    border-color: #0073aa;
+    box-shadow: 0 2px 8px rgba(0, 115, 170, 0.2);
+}
+
+.slider-image-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-image-item .remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    background: #dc3232;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.slider-image-item:hover .remove-image {
+    opacity: 1;
+}
+
+.slider-image-item .remove-image:hover {
+    background: #a00;
+}
+
+#add-slider-images {
+    margin-top: 10px;
+}
+
+/* Sortable placeholder */
+.ui-sortable-placeholder {
+    border: 2px dashed #0073aa;
+    background: #e5f5fa;
+    visibility: visible !important;
+    height: 150px !important;
+}
+
+.ui-sortable-helper {
+    opacity: 0.8;
+    transform: rotate(2deg);
+}
