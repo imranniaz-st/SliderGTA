@@ -1,26 +1,26 @@
 <?php
 /**
- * Elementor Widget Class
+ * Elementor Widget Class for Bico Slider
  */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
+class Bico_Slider_Elementor_Widget extends \Elementor\Widget_Base {
     
     /**
      * Get widget name
      */
     public function get_name() {
-        return 'slider_gta';
+        return 'bico_slider';
     }
     
     /**
      * Get widget title
      */
     public function get_title() {
-        return __('Slider GTA', 'slider-gta');
+        return __('Bico Slider', 'bico-slider');
     }
     
     /**
@@ -34,14 +34,14 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
      * Get widget categories
      */
     public function get_categories() {
-        return array('slider-gta');
+        return array('bico-slider');
     }
     
     /**
      * Get widget keywords
      */
     public function get_keywords() {
-        return array('slider', 'carousel', 'images', 'gallery', 'gta');
+        return array('slider', 'carousel', 'images', 'gallery', 'bico');
     }
     
     /**
@@ -53,14 +53,14 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'content_section',
             array(
-                'label' => __('Slider Settings', 'slider-gta'),
+                'label' => __('Slider Settings', 'bico-slider'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             )
         );
         
         // Get all published sliders
         $sliders = get_posts(array(
-            'post_type' => 'slider_gta',
+            'post_type' => 'bico_slider',
             'posts_per_page' => -1,
             'post_status' => 'publish',
             'orderby' => 'title',
@@ -79,7 +79,7 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
                 'no_sliders_notice',
                 array(
                     'type' => \Elementor\Controls_Manager::RAW_HTML,
-                    'raw' => __('No sliders found. Please create a slider first from Dashboard > Sliders.', 'slider-gta'),
+                    'raw' => __('No sliders found. Please create a slider first from Dashboard > Sliders.', 'bico-slider'),
                     'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
                 )
             );
@@ -87,7 +87,7 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
             $this->add_control(
                 'slider_id',
                 array(
-                    'label' => __('Select Slider', 'slider-gta'),
+                    'label' => __('Select Slider', 'bico-slider'),
                     'type' => \Elementor\Controls_Manager::SELECT,
                     'options' => $slider_options,
                     'default' => array_key_first($slider_options),
@@ -101,7 +101,7 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
         $this->start_controls_section(
             'style_section',
             array(
-                'label' => __('Style', 'slider-gta'),
+                'label' => __('Style', 'bico-slider'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             )
         );
@@ -109,7 +109,7 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
         $this->add_responsive_control(
             'slider_height',
             array(
-                'label' => __('Slider Height', 'slider-gta'),
+                'label' => __('Slider Height', 'bico-slider'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => array('px', 'vh'),
                 'range' => array(
@@ -143,12 +143,12 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
         $settings = $this->get_settings_for_display();
         
         if (empty($settings['slider_id'])) {
-            echo '<p>' . __('Please select a slider.', 'slider-gta') . '</p>';
+            echo '<p>' . __('Please select a slider.', 'bico-slider') . '</p>';
             return;
         }
         
         // Use the shortcode to render the slider
-        echo do_shortcode('[slider_gta id="' . intval($settings['slider_id']) . '"]');
+        echo do_shortcode('[bico_slider id="' . intval($settings['slider_id']) . '"]');
     }
     
     /**
@@ -157,13 +157,13 @@ class Slider_GTA_Elementor_Widget extends \Elementor\Widget_Base {
     protected function content_template() {
         ?>
         <# if (settings.slider_id) { #>
-            <div class="elementor-slider-gta-placeholder">
-                <i class="eicon-slider-album" style="font-size: 48px; color: #71d7f7;"></i>
-                <p><?php _e('Slider GTA Widget', 'slider-gta'); ?></p>
-                <p style="font-size: 12px; color: #666;"><?php _e('Preview available on frontend', 'slider-gta'); ?></p>
+            <div class="elementor-bico-slider-placeholder">
+                <i class="eicon-slider-album" style="font-size: 48px; color: #0073aa;"></i>
+                <p><?php _e('Bico Slider Widget', 'bico-slider'); ?></p>
+                <p style="font-size: 12px; color: #666;"><?php _e('Preview available on frontend', 'bico-slider'); ?></p>
             </div>
         <# } else { #>
-            <p><?php _e('Please select a slider.', 'slider-gta'); ?></p>
+            <p><?php _e('Please select a slider.', 'bico-slider'); ?></p>
         <# } #>
         <?php
     }
