@@ -1,0 +1,61 @@
+name: Deploy to Repository
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Create release archive
+      run: |
+        mkdir -p build
+        zip -r build/slider-gta.zip . \
+          -x "*.git*" \
+          -x "*node_modules*" \
+          -x "*vendor*" \
+          -x "*.github*" \
+          -x "composer.*" \
+          -x "phpcs.xml" \
+          -x ".DS_Store"
+        ls -lh build/
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: slider-gta-release
+        path: build/slider-gta.zip
+
+    - name: Generate release notes
+      run: |
+        echo "## Slider GTA Plugin" > RELEASE_NOTES.md
+        echo "" >> RELEASE_NOTES.md
+        echo "**Version:** $(date +%Y.%m.%d)" >> RELEASE_NOTES.md
+        echo "" >> RELEASE_NOTES.md
+        echo "**Last Commit:** ${{ github.event.head_commit.message }}" >> RELEASE_NOTES.md
+        echo "" >> RELEASE_NOTES.md
+        echo "### Files Included" >> RELEASE_NOTES.md
+        echo "- Main plugin file" >> RELEASE_NOTES.md
+        echo "- Admin interface" >> RELEASE_NOTES.md
+        echo "- Shortcode support" >> RELEASE_NOTES.md
+        echo "- Elementor widget" >> RELEASE_NOTES.md
+        echo "- Assets (CSS, JS)" >> RELEASE_NOTES.md
+
+    - name: Upload release notes
+      uses: actions/upload-artifact@v3
+      with:
+        name: release-notes
+        path: RELEASE_NOTES.md
+
+    - name: Notify deployment
+      run: |
+        echo "✓ Deployment artifacts prepared"
+        echo "✓ Plugin ready for distribution"

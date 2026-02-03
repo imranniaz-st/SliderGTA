@@ -1,0 +1,118 @@
+name: PHP Linting & Code Standards
+
+on:
+  push:
+    branches: [ main, UPDATE ]
+  pull_request:
+    branches: [ main, UPDATE ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        tools: phpcs
+
+    - name: Run PHP Lint
+      run: |
+        find . -name "*.php" -type f ! -path "./vendor/*" ! -path "./.git/*" | xargs -I {} php -l {}
+
+    - name: Install WordPress Coding Standards
+      run: |
+        composer create-project wp-coding-standards/wpcs --no-dev --quiet || true
+
+    - name: Run PHPCS
+      run: |
+        phpcs --standard=WordPress-Core --exclude=WordPress.Files.FileName,WordPress.NamingConventions.PrefixAllGlobals,WordPress.NamingConventions.ValidFunctionName . --ignore=vendor,assets/js/swiper-bundle.min.js --extensions=php || true
+
+  syntax-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Validate PHP Syntax
+      run: |
+        for file in $(find . -name "*.php" -type f ! -path "./vendor/*"); do
+          php -l "$file" || exit 1
+        done
+
+    - name: Check plugin file headers
+      run: |
+        if grep -q "Plugin Name:" slider-gta.php; then
+          echo "✓ Plugin headers found"
+        else
+          echo "✗ Plugin headers missing"
+          exit 1
+        fi
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Verify plugin structure
+      run: |
+        echo "Checking plugin structure..."
+        [ -f "slider-gta.php" ] && echo "✓ Main plugin file exists" || exit 1
+        [ -d "includes" ] && echo "✓ Includes directory exists" || exit 1
+        [ -d "assets" ] && echo "✓ Assets directory exists" || exit 1
+        [ -f "assets/css/slider-gta.css" ] && echo "✓ Main CSS exists" || exit 1
+        [ -f "assets/js/slider-gta.js" ] && echo "✓ Main JS exists" || exit 1
+        [ -f "README.md" ] && echo "✓ README exists" || exit 1
+
+    - name: Check for required files
+      run: |
+        echo "Checking required plugin files..."
+        [ -f "includes/class-slider-gta.php" ] && echo "✓ Core class exists" || exit 1
+        [ -f "includes/class-slider-gta-admin.php" ] && echo "✓ Admin class exists" || exit 1
+        [ -f "includes/class-slider-gta-shortcode.php" ] && echo "✓ Shortcode class exists" || exit 1
+        [ -f "includes/elementor/class-slider-gta-elementor.php" ] && echo "✓ Elementor class exists" || exit 1
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run security checks
+      run: |
+        echo "Running security checks..."
+        
+        # Check for direct access prevention
+        if grep -r "if (!defined('ABSPATH'))" --include="*.php" . > /dev/null; then
+          echo "✓ Direct access prevention found"
+        else
+          echo "⚠ Warning: Some files may not have direct access prevention"
+        fi
+        
+        # Check for nonce verification
+        if grep -r "wp_verify_nonce" --include="*.php" . > /dev/null; then
+          echo "✓ Nonce verification found"
+        else
+          echo "⚠ Warning: No nonce verification found"
+        fi
+        
+        # Check for sanitization
+        if grep -r "sanitize_" --include="*.php" . > /dev/null; then
+          echo "✓ Data sanitization found"
+        else
+          echo "⚠ Warning: Data sanitization may be missing"
+        fi

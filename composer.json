@@ -1,0 +1,29 @@
+{
+  "name": "slider-gta/slider-gta",
+  "description": "A beautiful image slider plugin for WordPress with Swiper.js, multiple sliders, shortcodes, and Elementor integration",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Your Name",
+      "email": "your.email@example.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^3.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7"
+  },
+  "scripts": {
+    "lint": "phpcs --standard=WordPress-Core --extensions=php . --ignore=vendor,assets/js/swiper-bundle.min.js",
+    "fix": "phpcbf --standard=WordPress-Core --extensions=php . --ignore=vendor,assets/js/swiper-bundle.min.js"
+  },
+  "autoload": {
+    "classmap": [
+      "includes/"
+    ]
+  }
+}

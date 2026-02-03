@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="Slider GTA Plugin">
+    <description>WordPress Coding Standards for Slider GTA Plugin</description>
+
+    <!-- Exclude patterns -->
+    <exclude-pattern>/vendor/</exclude-pattern>
+    <exclude-pattern>/assets/js/swiper-bundle.min.js</exclude-pattern>
+    <exclude-pattern>/.git/</exclude-pattern>
+
+    <!-- Use WordPress-Core standard -->
+    <rule ref="WordPress-Core">
+        <!-- Allow short array syntax [] -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+        
+        <!-- Allow common naming conventions -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName"/>
+        <exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
+    </rule>
+
+    <!-- Check for proper escaping -->
+    <rule ref="WordPress.Security.EscapeOutput"/>
+    <rule ref="WordPress.Security.NonceVerification"/>
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+
+    <!-- File paths -->
+    <rule ref="WordPress.Files">
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    </rule>
+
+    <!-- PHP compatibility -->
+    <rule ref="PHPCompatibility">
+        <config name="testVersion" value="7.0-"/>
+    </rule>
+</ruleset>
